@@ -24,9 +24,10 @@ int main()
     
     cout << "Float forward Sum1 = " << sum1 << endl;
     cout << "Float backward sum2 = " << sum2 << endl;
-    
+    cout << "with n = 4096 sum1 max out and n = 53878 sum 2 max out" << endl;
     cout << "Sqrt of 6*sum1 = " << sqrt(6.0f*sum1) << endl;
     cout << "Sqrt of 6*sum2 = " << sqrt(6.0f*sum2) << endl;
+    cout << "Sum2 is more accurate!!!" << endl;
     
     return 0;
 }
