@@ -11,5 +11,6 @@ int main()
    cout << "Size of float : " << sizeof(float) << endl;
    cout << "Size of double : " << sizeof(double) << endl;
    cout << "Size of wchar_t : " << sizeof(wchar_t) << endl;
+   cout << "lack of long long " << sizeof(long long) << endl;
    return 0;
 }
