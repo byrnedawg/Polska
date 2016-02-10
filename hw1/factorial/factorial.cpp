@@ -7,9 +7,9 @@ using namespace std;
 
 unsigned int x;
 
-long long factorial(unsigned int n)
+unsigned long long factorial(unsigned int n)
 {
-   long long fact_n = n; //long long the biggest factorial calculated is 20
+   unsigned long long fact_n = n; //long long the biggest factorial calculated is 20
   
     while(n > 1)
     {
