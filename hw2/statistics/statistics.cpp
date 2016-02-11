@@ -1,57 +1,80 @@
 // Name: Gregory Byrne
 // Assignment: HW3a Statistics
+
 #include <iostream>
+#include <cmath>
 using namespace std;
 
 void printArray(const double g[], const int n) 
 {
-	//cout << "SIZEOF my parameter: " << sizeof(g) << '\n';
 	for (int i = 0; i < n; i++)
 	{
-		cout << i << ":" <<g[i] << endl;
+		cout << i << ":" << g[i] << endl;
 	}
 	cout << endl;
-	//	g[0] = -1;
 }
 
-double mean(const double g[], int length) 
+void stats(const double g[], int length, double& mean, double& max, double& min, double& variance, double& std) 
 {
-    double sum = 0;
-    for( int i = 0; i < length; i++ )
+	double varSum = 0;
+	mean = g[0];
+	max = g[0];
+	min = g[0];
+	
+	for( int i = 1; i < length; i++ )
 	{
-		sum += g[i];
+		mean += g[i];
+		
+		if(g[i] > max)
+		{
+			max = g[i];
+		}
+		if(g[i] < min)
+		{
+			min = g[i];
+		}
 	}
-	cout << "sum is equal to = " << sum << endl;
-	return sum/length;
-}
-
-void stats(const int g[], int length, double& mean, int& max, int& min) 
-{
-
-
+	
+	mean = mean / length;
+	
+	for(int j = 0; j < length; j++)
+	{
+		varSum += pow((g[j] - mean), 2);
+	}
+	
+	variance = varSum / length;
+	std = sqrt(variance);
 }
 
 int main()
 {
-	// We know that we need a constant number of elements
-	//const int max = 10;
-	int max;
-	cout << "Enter the Size of the Array" << endl;
-	cin >> max;
-	double values[max];
-	// We will calculate their sum
-	double sum = 0;
+	int index;
+	double meanValue;
+	double maxValue;
+	double minValue;
+	double varianceValue;
+	double stdValue;
 	
-	cout << "Please type doubles.\n";
+	cout << "Enter the Size of the Array" << endl;
+	cin >> index;
+	double values[index];
+	
+	cout << "Please type doubles to fill Array" << endl;
 
-	for( int i = 0; i < max; i++ )
+	for( int i = 0; i < index; i++ )
 	{
-		cout << "Number " << i + 1 << ": ";
+		cout << "Number " << i + 1 << " : ";
 		cin >> values[i];
 	}
-
-	cout << "\n\nThe mean of these numbers is = " << mean(values, max) << "\n\n";
-	printArray(values, max);
+	
+	printArray(values, index);
+	stats(values, index, meanValue, maxValue, minValue , varianceValue, stdValue);
+	
+	cout << "The mean of these numbers is = " << meanValue << endl;
+	cout << "The max of these numbers is = " << maxValue << endl;
+	cout << "The min of these numbers is = " << minValue << endl;
+	cout << "The variance of these numbers is = " << varianceValue << endl;
+	cout << "The Standard Deviation of these numbers is = " << stdValue << endl;
 
 	return 0;
 }
