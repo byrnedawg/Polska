@@ -23,31 +23,31 @@ int main()
 	{
 		for(int j = 0; j < column; j++)
 		{
-		    cin >> values[i][j]; // fill matrix numbers row by row
+			cin >> values[i][j]; // fill matrix numbers row by row
 		}
 	}
 	
 	for(int k = 0; k < row; k++)
 	{
-	    for(int m = 0; m < column; m++)
-	    {
-	        cout << values[k][m] << "   "; // print out row by row
-	        rowSum+= values[k][m];         // add up row values
-	    }
-	    cout << rowSum; // output the sum of that row
-	    totalRowSum += rowSum; // total the value for all the rows
-	    rowSum = 0; // set rowSum back to 0 for the next rowSum calculation
-	    cout << endl;//go to next column in the print out 
+		for(int m = 0; m < column; m++)
+		{
+			cout << values[k][m] << "   "; // print out row by row
+			rowSum+= values[k][m];         // add up row values
+		}
+		cout << rowSum; // output the sum of that row
+		totalRowSum += rowSum; // total the value for all the rows
+		rowSum = 0; // set rowSum back to 0 for the next rowSum calculation
+		cout << endl;//go to next column in the print out 
 	}
 	
 	for(int a = 0; a< column; a++) // reverse column and rows in nested loops
 	{
-	    for(int b = 0; b < row; b++) // reversed col and row to add columns
-	    {
-	        colSum+= values[b][a]; // reverse column rows for sums
-	    }
-	    cout << colSum << "   "; // output column sum for that column
-	    colSum = 0; // set colSum back to 0 for next columns calculation
+		for(int b = 0; b < row; b++) // reversed col and row to add columns
+		{
+			colSum+= values[b][a]; // reverse column rows for sums
+		}
+		cout << colSum << "   "; // output column sum for that column
+		colSum = 0; // set colSum back to 0 for next columns calculation
 	}
 	cout << totalRowSum << endl; // print out the totalRowSum at the bot right
 	return 0;
