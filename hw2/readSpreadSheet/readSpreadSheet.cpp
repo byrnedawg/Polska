@@ -12,12 +12,12 @@ int main()
 	double totalRowSum = 0; // store sum of all rows
 	double colSum = 0; // store sum of a column
 	
-	cout << "Enter the Row and Column of the Square" << endl;
+	cout << "Enter the Row and Column of the Matrix" << endl;
 	cin >> row; //enter row
 	cin >> column; // enter column
 	double values[row][column]; // create and array of arrays or matrix
 	
-	cout << "Please type doubles to fill the Square" << endl;
+	cout << "Please type doubles to fill the Matrix" << endl;
 
 	for( int i = 0; i < row; i++ ) // nested loops to enter in values
 	{
