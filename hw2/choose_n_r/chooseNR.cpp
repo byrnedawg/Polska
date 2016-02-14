@@ -19,19 +19,19 @@ double choose(unsigned int n, unsigned int r)
         fact_n *=  n-1; 
         //cout << fact_n << " "<<endl;
     }
-     cout << "fact n = "<< fact_n <<endl;
+    // cout << "fact n = "<< fact_n <<endl;
     for(r; r > 1; r--)
     {
         fact_r *=  r-1; 
         //cout << fact_r << " "<<endl;
     }
-    cout << "fact r = "<< fact_r <<endl;
+   // cout << "fact r = "<< fact_r <<endl;
     for(u; u > 1; u--)
     {
         fact_diff *=  u-1; 
        // cout << fact_u << " "<<endl;
     }
-    cout << "fact u = "<< fact_diff <<endl;
+   // cout << "fact u = "<< fact_diff <<endl;
     
     choose_calc = fact_n / (fact_r*fact_diff);
     return choose_calc;
