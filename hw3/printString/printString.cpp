@@ -1,3 +1,5 @@
+// Name: Gregory Byrne
+// Assignment: HW3g - print string
 #include <iostream>
 #include <string>
 
@@ -8,7 +10,8 @@ using namespace std;
 // return the length of the number in characters
 // ex. -9876 returns 5
 /// biggest +/- 2100000000
-int toString(char s[], int v) {
+//int toString(char s[], int v) {
+long toString(char s[], long v) {
 
     int i, sign;
     int length = 0;
@@ -22,7 +25,10 @@ int toString(char s[], int v) {
    } while ((v /= 10) > 0); // // last digit
    
     if (sign < 0) //if its a negative number
-        s[i++] = '-'; // add sign character
+    {
+        s[i] = '-'; // add sign character
+        i++;
+    }
     s[i] = '\0'; // null character
     length = i; // store length value
     for(i; i>= 0; i--) // read out array in backwards order 
@@ -32,7 +38,7 @@ int toString(char s[], int v) {
     return length;
 }
 
-/* strlen: return length of s */
+//  return length of s 
 int lengthString(char s[]){
     int i = 0;
     while (s[i] != '\0')
@@ -42,15 +48,15 @@ int lengthString(char s[]){
 
 int main() 
 {
-    char runagain = 'y';
+   // char runagain = 'y';
     char data[11];
-    int value;
-    do{
+    long value;
+   // do{
         cout << "Enter in the value to convert to string \n";
         cin >> value;
         cout << "The Length of the string is = " << toString(data, value) << "\n";
-        cout << "Try another number y or n ? \n";
-        cin >> runagain;
-    } while ( runagain == 'y' || runagain == 'Y' );
+//        cout << "Try another number y or n ? \n";
+  //      cin >> runagain;
+  //  } while ( runagain == 'y' || runagain == 'Y' );
     return 0;
 }
