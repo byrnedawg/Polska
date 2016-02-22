@@ -3,13 +3,11 @@
 
 using namespace std;
 
-int wind_speed = 0;
-int air_temp = 0;
-double wind_chill = 0.0;
-
-
 int main() 
 {
+   int wind_speed = 0;
+   int air_temp = 0;
+   double wind_chill = 0.0;
    cout << "Enter value for wind speed  " << endl;
    cin >> wind_speed;
    cout << "Enter value for air temp " << endl;

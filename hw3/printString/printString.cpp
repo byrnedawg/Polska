@@ -11,7 +11,7 @@ using namespace std;
 // ex. -9876 returns 5
 /// biggest +/- 2100000000
 //int toString(char s[], int v) {
-long toString(char s[], long v) {
+int toString(char s[], long v) {
 
     int i, sign;
     int length = 0;
@@ -35,6 +35,8 @@ long toString(char s[], long v) {
     {
          cout << s[i] << ' '; // print array of chars with a space in between
     }
+    cout << "The Length of the string is = " ;
+    
     return length;
 }
 
@@ -51,10 +53,11 @@ int main()
    // char runagain = 'y';
     char data[11];
     long value;
+    int lenght = 0;
    // do{
         cout << "Enter in the value to convert to string \n";
         cin >> value;
-        cout << "The Length of the string is = " << toString(data, value) << "\n";
+        cout << toString(data, value) << "\n";
 //        cout << "Try another number y or n ? \n";
   //      cin >> runagain;
   //  } while ( runagain == 'y' || runagain == 'Y' );
