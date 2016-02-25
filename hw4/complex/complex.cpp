@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 
 using namespace std;
@@ -28,7 +29,7 @@ public:
 	void print() const {
     	if(image >= 0)
     	{
-    		cout << real << "+" << image <<"i\n";
+    		cout << real << "+" << abs(image) <<"i\n";
     	}
     	else
     	{
@@ -46,7 +47,7 @@ public:
 
 int main() {
 	const Complex c1; // (real=0, imag =0)
-	const Complex c2(-1.5);// real=1.5, imag = 0.0
+	const Complex c2(1.5);// real=1.5, imag = 0.0
 	Complex c3(1.5,-2.25); // real = 1.5, imag=2.25
 
     c1.print(); // 0+0i
@@ -55,7 +56,10 @@ int main() {
 	Complex c4 = c1.add(c2); // (real=1.5, imag=0.0)
     Complex c5 = c2.sub(c4); // nice but not for the homework
     Complex c6 = c2.mult(c3);
+    cout << "add c1 to c2 is = ";
 	c4.print();
+	cout << "sub c4 from c2 is = ";
 	c5.print();
+	cout << "mult c2 and c3 is = ";
 	c6.print();
 }
