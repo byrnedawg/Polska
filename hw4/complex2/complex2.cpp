@@ -1,3 +1,5 @@
+// Name: Gregory Byrne
+// Assignment: HW5a - Complex take 2
 #include <iostream>
 #include <cmath>
 
@@ -45,9 +47,23 @@ public:
 	friend Complex operator *(Complex a, Complex b) {
 		return Complex(a.real * b.real, a.image * b.image);
 	}
-
-	// x = 1 + 2 + 3 + 4;
-	//cout << "hello" << f1 << "hello";
+	
+	//c=a/b
+	friend Complex operator/(const Complex &a, const Complex &b)
+	{
+		Complex c;
+		c.real=(a.real*b.real+a.image * b.image)/(b.real*b.real+b.image*b.image);
+		c.image=(a.image * b.real-a.real*b.image)/(b.real*b.real+b.image*b.image);
+		return c;
+	}
+	
+	double mod()
+	{
+		double m;
+		m=sqrt(real*real+image*image);
+		return m;
+	}
+	
 	friend ostream& operator <<(ostream& s, Complex c) {
   		
   		if(c.image >= 0)
