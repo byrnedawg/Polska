@@ -1,6 +1,5 @@
-// http://www.cplusplus.com/forum/general/97018/
-// http://stackoverflow.com/questions/19927071/how-to-implement-a-matrix-class-with-dynamically-allocated-elements
-// http://www.cplusplus.com/forum/general/8912/
+// Name: Gregory Byrne
+// Assignment: HW8 - Matrix
 #include <iostream>
 #include <memory.h>
 using namespace std;
