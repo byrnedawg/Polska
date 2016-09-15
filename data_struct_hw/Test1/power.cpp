@@ -36,5 +36,6 @@ int powerMod(unsigned long long x, int n, int m){  // O(log n)
 int main()
 {
     cout << "Power = " << power(2,8) << "\n";
+    cout << "Power Mod = " << powerMod(2,8,4) << "\n";
     return 0;
 }
