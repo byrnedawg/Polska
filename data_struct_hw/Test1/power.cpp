@@ -7,11 +7,13 @@ using namespace std;
 
 
 
-int power(int x, int n){
-    
+int power(int x, int n)
+{
     int prod = 1;
-    while(n > 0){
-        if(n % 2 != 0){
+    while(n > 0)
+    {
+        if(n % 2 != 0)
+        {
             prod = prod * x;
         }
         n = n / 2;
@@ -20,11 +22,13 @@ int power(int x, int n){
     return prod;
 }
 
-int powerMod(unsigned long long x, int n, int m){  // O(log n)
-    
+int powerMod(unsigned long long x, int n, int m)  // O(log n)
+{ 
     int prod = 1;
-    while(n > 0){
-        if(n % 2 != 0){
+    while(n > 0)
+    {
+        if(n % 2 != 0)
+        {
             prod = (prod * x) % m;
         }
         n = n / 2;

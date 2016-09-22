@@ -1,6 +1,7 @@
 // Name: Gregory Byrne
 
 #include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -9,11 +10,13 @@ int trialDicvisionGCD(int a, int b)
 {
     
     int gcd = 1;
+    /*
     if(b > a)
     {
         swap(a,b);
     }
-    for(int i=2; i < a; i++)
+    */
+    for(int i=2; i < max(a,b); i++)
     {
         if(a % i == 0 && b % i == 0)
         {
