@@ -24,7 +24,7 @@ void insertionSort(int x[], int length)
         }
  
         x[j+1]=temp;    //insert element in proper place
-         for(int k = 0; k < length; k++)
+        for(int k = 0; k < length; k++)
         {
             cout << " " << x[k] << " ";
         }
@@ -37,17 +37,17 @@ void insertionSort(int x[], int length)
 int main()
 {
     
-    int list[] = { 8, 3, 4, 2, 9, 6, 5, 7, 1, 10 };
+    int list[] = {1, 3, 9, 6, 8, 6, 2, 4};
     const int listSize = sizeof(list)/sizeof(int);
 
     for(int i = 0; i < listSize; i++)
     {
         cout << " " << list[i] << " ";
     }
-    cout << "\n";
+    cout << "\n\n";
     
     
-    insertionSort(list, 10);
+    insertionSort(list, listSize);
     
      for(int i = 0; i < listSize; i++)
     {

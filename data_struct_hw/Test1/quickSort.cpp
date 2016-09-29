@@ -33,6 +33,12 @@ void quickSort(int x[], int left, int right)
              i++;
              j--;
         }
+        
+        for(int k = 0; k < 10; k++)
+        {
+            cout << " " << x[k] << " ";
+        }
+        cout << "\n";
     }
    
    //i == j
@@ -44,7 +50,7 @@ void quickSort(int x[], int left, int right)
 
 int main()
 {
-    int list[] = { 1, 3, 4, 2, 9, 6, 5, 7, 8, 10 };
+    int list[] = { 3, 1, 4, 2, 9, 6, 5, 8, 10, 7 };
     //int list[] = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
     const int listSize = sizeof(list)/sizeof(int);
     cout << "List is of size " << listSize << "\n";
@@ -53,7 +59,7 @@ int main()
     {
         cout << " " << list[i] << " ";
     }
-    cout << "\n";
+    cout << "\n\n";
     
     
     quickSort(list, 0, listSize -1);
