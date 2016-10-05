@@ -3,7 +3,12 @@
 #include <iomanip>
 using namespace std;
 
-double f(double x) { return (x+3) * (x-3);}
+double f(double x) 
+{ 
+	//return (x+3) * (x-3);
+//	return 9 - x*x;
+	return (13 - x*x - (2*x));
+}
 typedef double  (*FuncOneVar)(double);
 
 double bisection(FuncOneVar f, double a, double b, double eps) {
@@ -34,7 +39,7 @@ double bisection(FuncOneVar f, double a, double b, double eps) {
 
 int main() {
 	for (double eps = .1; eps > 1e-25; eps *= .1) {
-		cout << setprecision(25) << bisection(f, 1, 4, eps) << '\n';
+		cout << setprecision(25) << bisection(f, 1, 6, eps) << '\n';
 	//	cout << bisection(sin, pi, 3*pi, 0.001) << '\n';
 	}
 }
