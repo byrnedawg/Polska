@@ -24,13 +24,6 @@ public:
 		if (used == size)
 			grow();
 			
-		int* temp = p; // O(1)
-		
-    	p = new int[used+1]; // O(1)
-			for (int i = 0; i < used; i++)
-			{
-				p[i] = temp[i];
-			}
 		p[used] = v;
 		used++;
 
@@ -201,10 +194,22 @@ int main()
 	cout << b << "\n";
 	cout << "Storage used = " << b.getUsed() << "\tCapacity = " << b.getCapacity() << "\n";
 	c.addStart(13);
-	c.addStart(53);
+	c.addEnd(53);
 	cout << c << "\n";
 	cout << "Storage used = " << c.getUsed() << "\tCapacity = " << c.getCapacity() << "\n";
-	//cout << c[3];
+	
+    unsigned long long testNumber;
+    ifstream myfile ("HW4a.txt");
+    if (myfile.is_open())
+    {
+        while  (myfile >> testNumber)
+        {
+            cout <<  testNumber << "\t";
+        }
+        myfile.close();
+    }
+
+  else cout << "Unable to open file"; 
 }
 
 
