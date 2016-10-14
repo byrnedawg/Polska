@@ -180,7 +180,8 @@ void openTestFile()
     int startNum, stepNum, stopNum;
     string addFront = "ADD_FRONT";
     string addBack = "ADD_BACK";
-    string output = "OUTPUT";
+    string output1 = "OUTPUT";
+    string output2 = "OUTPUT\r";
     string removeFront = "REMOVE_FRONT";
     string removeBack = "REMOVE_BACK";
     
@@ -189,7 +190,7 @@ void openTestFile()
     	while  (getline(myfile, line))
     	{
     		command = line.substr(0, line.find_first_of(' '));
-    		if(command.compare("") != 0)
+    		if(command.compare("") != 0 && command.compare("\r")!= 0 )
     		{
 	    		if((command.compare(addFront) == 0))
 	    		{
@@ -225,7 +226,7 @@ void openTestFile()
 		   				testArray.addEnd(i);
 		   			}
 	    		}
-	    		else if((command.compare(output) == 0))
+	    		else if((command.compare(output1) == 0) || (command.compare(output2) == 0))
 	    		{
 	    			//cout << "The command for this line is OUTPUT\n";
 	    			cout << testArray << "\n";
