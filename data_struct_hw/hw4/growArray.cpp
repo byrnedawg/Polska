@@ -170,8 +170,8 @@ void firstTest()
 void openTestFile()
 {
 	GrowArray testArray;
-//	ifstream myfile ("HW4a.txt");
-	ifstream myfile ("HW4b.txt");
+	ifstream myfile ("HW4a.txt");
+//	ifstream myfile ("HW4b.txt");
 	string::size_type sz;
     string command;
     string line;
