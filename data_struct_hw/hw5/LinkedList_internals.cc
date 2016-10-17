@@ -122,6 +122,8 @@ int main() {
 	for (LinkedList::Iter i = a; !i; ++i)
 		*i *= 2;
 	cout << a << '\n';
+	a.insert(9, 53);
+	cout << a << "\n";
 }
 	
 

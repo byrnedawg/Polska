@@ -20,18 +20,32 @@ public:
 	{
 		count = 0;
 	}
+	
+	~LinkedList2()
+	{
+		
+	    while (head != nullptr)
+	    {
+	        Node* p = head;
+	        head = head->next;
+	        delete p;
+	    }
+	}
 
 	void addEnd(int v) 
 	{
-		if (head == nullptr) {
+		if (head == nullptr) 
+		{
 			head = new Node(v, nullptr);
 			tail = head;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		else
 		{
 			tail -> next = new Node(v, nullptr);
 			tail = tail->next;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		
@@ -45,6 +59,7 @@ public:
 		{
 			head = new Node(v, nullptr);
 			tail = head;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		else
@@ -52,6 +67,7 @@ public:
 			Node *p = new Node(v, head);
 			p -> next = head;
 			head = p;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		count++;
@@ -60,17 +76,33 @@ public:
 	
 	void insert(int i, int v) 
 	{
-		Node* p = head;
-    	while (i > 0) 
-    	{
-			if (p == nullptr)
-			{
-				return;
-			}
-			p = p->next;
-    		i--;
+		
+		if(i > size())
+		{
+			throw "LinkedList index out of bounds";
 		}
-    	p->next = new Node(v, p->next);
+		else if(i == size())
+		{
+			addEnd(v);
+		}
+		else if(i == 0)
+		{
+			addStart(v);
+		}
+		else
+		{
+			Node* p = head;
+	    	while (i > 0) 
+	    	{
+				if (p == nullptr)
+				{
+					return;
+				}
+				p = p->next;
+	    		i--;
+			}
+	    	p->next = new Node(v, p->next);
+		}
 	}
 	
 	void removeEnd() 
@@ -84,6 +116,7 @@ public:
 		{
 			head = nullptr;
 			tail = nullptr;
+			cout <<"\n The Head is pointing to nothing\n";
 			cout << "\n The tail is pointing to nothing\n";
 			count--;
 		}
@@ -91,6 +124,7 @@ public:
 		{
 			head->next = nullptr;
 			tail = head;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count--;
 		
@@ -105,6 +139,7 @@ public:
 				p->next = nullptr;
 				tail = p;
 				count--;
+				cout <<"\n The Head is pointing to " << head -> val << "\n";
 				cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 			
@@ -123,6 +158,7 @@ public:
 		{
 			head = nullptr;
 			tail = nullptr;
+			cout <<"\n The Head is pointing to nothing \n";;
 			cout << "\n The tail is pointing to nothing\n";
 			count--;
 		}
@@ -130,6 +166,7 @@ public:
 		{
 			delete head;
 			head = tail;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count--;
 		}
@@ -137,32 +174,51 @@ public:
 		{
 			head = p-> next;
 			delete p;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count --;
 		}
 	}
 
-	friend ostream& operator<<(ostream& s, const LinkedList2& list) {
+	friend ostream& operator<<(ostream& s, const LinkedList2& list) 
+	{
 	    s << "{ ";
-		for (Node* p = list.head; p != nullptr; p = p->next) {
+		for (Node* p = list.head; p != nullptr; p = p->next) 
+		{
 			s << p->val << ' ';
 		}
 		s << "}";
 		return s;
 	}
- int size() const { //O(n)
-		
+ 
+	int size() const 
+	{ 
 		return count;
 	}
 
-	int get(int i) const { // O(n)
-		Node* p = head;
-		for ( ; i > 0; i--, p = p->next)
-			if (p == nullptr)
-				throw "LinkedList index out of bounds";
-    return p->val;
+	int get(int i) const 
+	{ 
+		if(i == size())
+		{
+			return tail->val;
+		}
+		else if(i > size())
+		{
+			return -1;
+			throw "LinkedList index out of bounds";
+		}
+		else
+		{
+			Node* p = head;
+			for ( ; i > 0; i--, p = p->next)
+				if (p == nullptr)
+					throw "LinkedList index out of bounds";
+	    	return p->val;
+		}
 	}
-}	;
+
+	
+};
 
 
 void firstTest()
@@ -174,6 +230,18 @@ void firstTest()
 	for (int i = 0; i < 10; i++)
 		a.addEnd(i);
 	cout << a << '\n';
+	cout << "The Value at postion 3 is " << a.get(3) << " \n";
+	cout << "The Value at postion 10 is " << a.get(10) << " \n";
+	cout << " The size of the linked list is " << a.size() << "\n";
+	cout << "The Value at postion 20 is " << a.get(20) << " \n";
+	cout << "The Value at postion 20 is " << a.get(21) << " \n";
+	a.insert(0,53);
+	cout << a << '\n';
+	a.removeStart();
+	cout << a << '\n';
+	a.removeEnd();
+	cout << a << '\n';
+	
 }
 
 void openTestFile()
@@ -354,8 +422,8 @@ void commandLineTest()
 
 int main() 
 {
-//	openTestFile();
-	commandLineTest();
+	openTestFile();
+//	commandLineTest();
 //	firstTest();
 
   return 0;
