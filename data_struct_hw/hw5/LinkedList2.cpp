@@ -23,13 +23,12 @@ public:
 	
 	~LinkedList2()
 	{
-		
-	    while (head != nullptr)
-	    {
-	        Node* p = head;
-	        head = head->next;
-	        delete p;
-	    }
+		Node* q;
+		for (Node* p = head; p != nullptr; p = q) 
+		{
+			q = p->next;
+			delete p;
+		}
 	}
 
 	void addEnd(int v) 
@@ -38,15 +37,15 @@ public:
 		{
 			head = new Node(v, nullptr);
 			tail = head;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		else
 		{
 			tail -> next = new Node(v, nullptr);
 			tail = tail->next;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		
 		count++;
@@ -59,16 +58,16 @@ public:
 		{
 			head = new Node(v, nullptr);
 			tail = head;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		else
 		{
 			Node *p = new Node(v, head);
 			p -> next = head;
 			head = p;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 		count++;
 		
@@ -102,6 +101,7 @@ public:
 	    		i--;
 			}
 	    	p->next = new Node(v, p->next);
+	    	count++;
 		}
 	}
 	
@@ -116,16 +116,16 @@ public:
 		{
 			head = nullptr;
 			tail = nullptr;
-			cout <<"\n The Head is pointing to nothing\n";
-			cout << "\n The tail is pointing to nothing\n";
+		//	cout <<"\n The Head is pointing to nothing\n";
+		//	cout << "\n The tail is pointing to nothing\n";
 			count--;
 		}
 		else if (head->next == tail) 
 		{
 			head->next = nullptr;
 			tail = head;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count--;
 		
 		}
@@ -139,8 +139,8 @@ public:
 				p->next = nullptr;
 				tail = p;
 				count--;
-				cout <<"\n The Head is pointing to " << head -> val << "\n";
-				cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//		cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//		cout << "\n The tail is pointing to " << tail -> val << "\n";
 		}
 			
 	}
@@ -158,24 +158,24 @@ public:
 		{
 			head = nullptr;
 			tail = nullptr;
-			cout <<"\n The Head is pointing to nothing \n";;
-			cout << "\n The tail is pointing to nothing\n";
+		//	cout <<"\n The Head is pointing to nothing \n";;
+		//	cout << "\n The tail is pointing to nothing\n";
 			count--;
 		}
 		else if (head->next == tail) 
 		{
 			delete head;
 			head = tail;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count--;
 		}
 		else
 		{
 			head = p-> next;
 			delete p;
-			cout <<"\n The Head is pointing to " << head -> val << "\n";
-			cout << "\n The tail is pointing to " << tail -> val << "\n";
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count --;
 		}
 	}
@@ -234,13 +234,16 @@ void firstTest()
 	cout << "The Value at postion 10 is " << a.get(10) << " \n";
 	cout << " The size of the linked list is " << a.size() << "\n";
 	cout << "The Value at postion 20 is " << a.get(20) << " \n";
-	cout << "The Value at postion 20 is " << a.get(21) << " \n";
+	cout << "The Value at postion 21 is " << a.get(21) << " \n";
 	a.insert(0,53);
 	cout << a << '\n';
+	cout << " The size of the linked list is " << a.size() << "\n";
 	a.removeStart();
+	cout << " The size of the linked list is " << a.size() << "\n";
 	cout << a << '\n';
 	a.removeEnd();
 	cout << a << '\n';
+	cout << " The size of the linked list is " << a.size() << "\n";
 	
 }
 
