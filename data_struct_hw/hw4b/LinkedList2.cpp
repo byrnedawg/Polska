@@ -1,3 +1,5 @@
+// Name: Gregory Byrne
+// Assignment: HW4b - LinkedList2
 #include <iostream>
 #include <fstream>
 #include <string>

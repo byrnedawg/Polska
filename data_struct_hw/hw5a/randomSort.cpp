@@ -1,3 +1,5 @@
+// Name: Gregory Byrne
+// Assignment: HW5a - randomSort
 #include <iostream>
 #include <fstream>
 #include <string>

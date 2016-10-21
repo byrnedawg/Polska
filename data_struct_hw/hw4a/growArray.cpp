@@ -1,3 +1,5 @@
+// Name: Gregory Byrne
+// Assignment: HW4a - growArray
 #include <iostream>
 #include <fstream>
 #include <string>
