@@ -1,29 +1,29 @@
 // Name: Gregory Byrne
-// Assignment: HW4b - LinkedList2
+// Assignment:  DoubleLinkedList
 #include <iostream>
 #include <fstream>
 #include <string>
 
 using namespace std;
 									 
-class LinkedList2 {
+class DoubleLinkedList {
 private:
 	class Node {
 	public:
     int val;
 		Node* next;
-		Node(int v, Node* n) : val(v), next(n) {}
+		Node* prev;
+		Node(int v, Node* n, Node* pre) : val(v), next(n), prev(pre) {}
 	};
 	Node* head;
-	Node* tail;
 	int count;
 public:
-	LinkedList2() : head(nullptr), tail(nullptr) 
+	DoubleLinkedList() : head(nullptr)
 	{
-		count = 0;
+	    count = 0;
 	}
 	
-	~LinkedList2()
+	~DoubleLinkedList()
 	{
 		Node* q;
 		for (Node* p = head; p != nullptr; p = q) 
@@ -33,51 +33,48 @@ public:
 		}
 	}
 
-	void addEnd(int v) 
-	{
-		if (head == nullptr) 
-		{
-			head = new Node(v, nullptr);
-			tail = head;
-		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
-		}
-		else
-		{
-			tail -> next = new Node(v, nullptr);
-			tail = tail->next;
-		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
-		}
+	void addEnd(int v) {
+		if (head == nullptr) {
+			head = new Node(v, nullptr, nullptr);
+			count++;
 		
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
+			cout << "\n The prev is pointing to nullptr \n";
+			return;
+		}
+		Node* p;
+		for (p = head; p->next != nullptr; p = p->next)  //O(n)
+			;
+		p->next = new Node(v, nullptr, p);
+		
+		cout <<"\n The Head is pointing to " << head -> val << "\n";
+		cout << "\n The previous value is pointing to " << p->next-> prev -> val << "\n";
 		count++;
 	}
 	
-	void addStart(int v) 
-	{ 
-		
+	 void addStart(int v) 
+	 { //O(1)
 		if(head == nullptr)
 		{
-			head = new Node(v, nullptr);
-			tail = head;
-		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
+			head = new Node(v, nullptr, nullptr);
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
+	
 		}
 		else
 		{
-			Node *p = new Node(v, head);
+			Node *p = new Node(v, head, nullptr);
+			p -> next = head;
 			head = p;
-		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
+			p -> next -> prev = head;
+			cout <<"\n The Head is pointing to " << head -> val << "\n";
+			cout << "\n The next value is pointing to " << p -> next-> val << "\n";
 		}
 		count++;
-		
-	}
-	
+	 }
+	 
 	void insert(int i, int v) 
 	{
-		
-		if(i > size())
+	    if(i > size())
 		{
 			throw "LinkedList index out of bounds";
 		}
@@ -101,45 +98,33 @@ public:
 				p = p->next;
 	    		i--;
 			}
-	    	p->next = new Node(v, p->next);
+	    	p->next = new Node(v, p->next, p);
+	    	//p -> next -> next -> prev = p->next;
 	    	count++;
+
+		    cout <<"\nThe Head is pointing to " << head -> val << "\n";
+		    if(p->next->next != nullptr)
+		    cout << "\nThe next value is pointing to " << p->next->next-> val << "\n";
+			if(p->next->prev != nullptr)
+			cout << "\nThe previous value is pointing to " << p->next-> prev -> val << "\n";
 		}
 	}
 	
-	void removeEnd() 
-	{
-		if(head == nullptr)
-		{
-			cout << "Empty List \n";
+	void removeEnd() {
+		if (head == nullptr)
+			return;
+		if (head->next == nullptr) {
+			head = nullptr;
+			delete head;
+			count--;
 			return;
 		}
-	
-		if (head == tail)
-		{
-			Node* p = tail;
-			head = nullptr;
-			tail = nullptr;
-			delete p;
-		//	cout <<"\n The Head is pointing to nothing\n";
-		//	cout << "\n The tail is pointing to nothing\n";
-			count--;
-		}
-		else
-		{
-			Node* p;
-			for (p = head; p->next->next != nullptr; p = p->next)
-			{
-				;
-			}
-				p->next = nullptr;
-				tail = p;
-				p = p -> next;
-				delete p;
-				count--;
-		//		cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//		cout << "\n The tail is pointing to " << tail -> val << "\n";
-		}
-			
+		Node* p;
+		for (p = head; p->next->next != nullptr; p = p->next)
+			;
+		p->next = nullptr;
+		delete p->next;
+		count--;
 	}
 	
 	void removeStart() 
@@ -149,21 +134,19 @@ public:
 			cout << "Empty List \n";
 			return;
 		}
-		if (head == tail)
+		if (head->next == nullptr) 
 		{
-			Node* p = tail;
 			head = nullptr;
-			tail = nullptr;
-			delete p;
-		//	cout <<"\n The Head is pointing to nothing \n";;
-		//	cout << "\n The tail is pointing to nothing\n";
+			delete head;
+		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
 			count--;
 		}
 		else
 		{
 			Node *p = head;
 			head = p-> next;
-			p = nullptr;
+			head -> prev = nullptr;
 			delete p;
 		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
 		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
@@ -171,7 +154,7 @@ public:
 		}
 	}
 
-	friend ostream& operator<<(ostream& s, const LinkedList2& list) 
+    friend ostream& operator<<(ostream& s, const DoubleLinkedList& list) 
 	{
 	    s << "{ ";
 		for (Node* p = list.head; p != nullptr; p = p->next) 
@@ -181,49 +164,33 @@ public:
 		s << "}";
 		return s;
 	}
- 
-	int size() const 
+	
+ int size() const 
 	{ 
 		return count;
 	}
 
-	int get(int i) const 
-	{ 
-		if(i == size())
-		{
-			return tail->val;
-		}
-		else if(i > size())
-		{
-			return -1;
-			throw "LinkedList index out of bounds";
-		}
-		else
-		{
-			Node* p = head;
-			for ( ; i > 0; i--, p = p->next)
-				if (p == nullptr)
-					throw "LinkedList index out of bounds";
-	    	
-	    	
-	    	
-	    		cout <<"\n The Head is pointing to " << head -> val << "\n";
-				if(p -> next != nullptr)
-				cout << "\n The next value is pointing to " << p->next-> val << "\n";
-				if(tail != nullptr)
-				cout << "\n The Tail is pointing to " << tail -> val << "\n";
-		
-				return p->val;
-		}
-	}
 
-	
-};
+ int get(int i) const 
+ { 
+	Node* p = head;
+	for ( ; i > 0; i--, p = p->next)
+		if (p == nullptr)
+			throw "DoubleLinkedList index out of bounds";
+				
+	cout <<"\n The Head is pointing to " << head -> val << "\n";
+	if(p -> next != nullptr)
+		cout << "\n The next value is pointing to " << p->next-> val << "\n";
+	if(p -> prev != nullptr)
+		cout << "\n The previous value is pointing to " << p -> prev -> val << "\n";
+    return p->val;
+	}
+}	;
 
 
 void firstTest()
 {
-	LinkedList2 a;
+	DoubleLinkedList a;
 	for (int i = 0; i < 10; i++)
 		a.addStart(i);
 	cout << a << '\n';
@@ -232,24 +199,24 @@ void firstTest()
 	cout << a << '\n';
 	cout << "The Value at postion 3 is " << a.get(3) << " \n";
 	cout << "The Value at postion 10 is " << a.get(10) << " \n";
-	cout << " The size of the linked list is " << a.size() << "\n";
+	cout << "The size of the linked list is " << a.size() << "\n";
 	cout << "The Value at postion 20 is " << a.get(20) << " \n";
 	cout << "The Value at postion 21 is " << a.get(21) << " \n";
 	a.insert(0,53);
 	cout << a << '\n';
-	cout << " The size of the linked list is " << a.size() << "\n";
+	cout << "The size of the linked list is " << a.size() << "\n";
 	a.removeStart();
-	cout << " The size of the linked list is " << a.size() << "\n";
+	cout << "The size of the linked list is " << a.size() << "\n";
 	cout << a << '\n';
 	a.removeEnd();
 	cout << a << '\n';
-	cout << " The size of the linked list is " << a.size() << "\n";
+	cout << "The size of the linked list is " << a.size() << "\n";
 	
 }
 
 void openTestFile()
 {
-	LinkedList2 testList;
+	DoubleLinkedList testList;
 	ifstream myfile ("HW4b.txt");
 	//	ifstream myfile ("HW4c.txt");
 	string::size_type sz;
@@ -355,7 +322,7 @@ void openTestFile()
 
 void commandLineTest()
 {
-	LinkedList2 commandLineList;
+	DoubleLinkedList commandLineList;
 	int answer = 0;
 	int value = 0;
 	int pos = 0;
@@ -452,13 +419,14 @@ void commandLineTest()
 
 int main() 
 {
-	openTestFile();
-//	commandLineTest();
+//	openTestFile();
+	commandLineTest();
 //	firstTest();
 
   return 0;
 }
 
+	
 	
 
 
