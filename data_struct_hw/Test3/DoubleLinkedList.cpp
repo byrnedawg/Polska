@@ -99,6 +99,7 @@ public:
 	    		i--;
 			}
 	    	p->next = new Node(v, p->next, p);
+	    	p -> next -> next -> prev = p -> next;
 	    	//p -> next -> next -> prev = p->next;
 	    	count++;
 
@@ -111,20 +112,34 @@ public:
 	}
 	
 	void removeEnd() {
-		if (head == nullptr)
-			return;
-		if (head->next == nullptr) {
-			head = nullptr;
-			delete head;
-			count--;
+		if(head == nullptr)
+		{
+			cout << "Empty List \n";
 			return;
 		}
-		Node* p;
-		for (p = head; p->next->next != nullptr; p = p->next)
-			;
-		p->next = nullptr;
-		delete p->next;
-		count--;
+		if (head->next == nullptr)
+		{
+			Node* p = head;
+			head = nullptr;
+			delete p;
+		//	cout <<"\n The Head is pointing to nothing\n";
+		//	cout << "\n The tail is pointing to nothing\n";
+			count--;
+		}
+		else
+		{
+			Node* p;
+			for (p = head; p->next->next != nullptr; p = p->next)
+			{
+				;
+			}
+				p->next = nullptr;
+				p = p -> next;
+				delete p;
+				count--;
+		//		cout <<"\n The Head is pointing to " << head -> val << "\n";
+		//		cout << "\n The tail is pointing to " << tail -> val << "\n";
+		}
 	}
 	
 	void removeStart() 
@@ -134,12 +149,13 @@ public:
 			cout << "Empty List \n";
 			return;
 		}
-		if (head->next == nullptr) 
+		if (head->next == nullptr)
 		{
+			Node* p = head;
 			head = nullptr;
-			delete head;
-		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
-		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
+			delete p;
+		//	cout <<"\n The Head is pointing to nothing\n";
+		//	cout << "\n The tail is pointing to nothing\n";
 			count--;
 		}
 		else
@@ -147,6 +163,7 @@ public:
 			Node *p = head;
 			head = p-> next;
 			head -> prev = nullptr;
+			p = nullptr;
 			delete p;
 		//	cout <<"\n The Head is pointing to " << head -> val << "\n";
 		//	cout << "\n The tail is pointing to " << tail -> val << "\n";
@@ -395,9 +412,13 @@ void commandLineTest()
 		{
 			cout << "What position do you want to look observe the node? \n";
 			cin >> pos;
-			if(pos >= commandLineList.size())
+			if(pos > commandLineList.size())
 			{
 				pos = commandLineList.size()-1;
+			}
+			else
+			{
+				cout << "Empty List cant use get function!!! \n\n";
 			}
 			cout << "At Position " << pos << " the value is " << commandLineList.get(pos) <<  "\n\n";
 			cout << commandLineList << "\n";

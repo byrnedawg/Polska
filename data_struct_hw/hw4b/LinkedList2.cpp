@@ -452,8 +452,8 @@ void commandLineTest()
 
 int main() 
 {
-	openTestFile();
-//	commandLineTest();
+//	openTestFile();
+	commandLineTest();
 //	firstTest();
 
   return 0;
