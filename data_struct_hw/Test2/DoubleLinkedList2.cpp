@@ -138,15 +138,20 @@ public:
 		else
 		{
 		    
-			Node* p = tail -> prev;
-		    p -> next = nullptr;
-			tail = p;
-			p = p -> next;
-			
+		    Node* p = tail;
+		    tail = p -> prev;
+		    tail -> next = nullptr;
+		    p = nullptr;
 			delete p;
 			count--;
 		//		cout <<"\n The Head is pointing to " << head -> val << "\n";
 		//		cout << "\n The tail is pointing to " << tail -> val << "\n";
+		/*
+			Node* p = tail -> prev;
+		    p -> next = nullptr;
+			tail = p;
+			p = p -> next;
+			*/
 		}
 	}
 	
