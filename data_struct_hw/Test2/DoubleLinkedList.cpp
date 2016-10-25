@@ -63,9 +63,10 @@ public:
 		else
 		{
 			Node *p = new Node(v, head, nullptr);
-			p -> next = head;
+		//	p -> next = head;
+			head -> prev = p;
 			head = p;
-			p -> next -> prev = head;
+			//p -> next -> prev = head;
 			cout <<"\n The Head is pointing to " << head -> val << "\n";
 			cout << "\n The next value is pointing to " << p -> next-> val << "\n";
 		}
