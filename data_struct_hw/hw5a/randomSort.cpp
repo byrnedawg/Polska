@@ -258,7 +258,7 @@ void openTestFile()
 	   				numArraySize = stoi(stringnum1, &sz);
 	   				numMax = stoi(stringnum2, &sz);
 	   		
-	    			cout << "The command for this line is PRINT RANDOM " << numArraySize << " " << numMax << "\n";
+	    		//	cout << "The command for this line is PRINT RANDOM " << numArraySize << " " << numMax << "\n";
 		    	//	cout << "NumArraySize = " << numArraySize << "\n";
 		    	//	cout << "NumMax = " << numMax << "\n";
 		    	 //   cout << "stringnum1 size = " << stringnum1.length() << "\n";
@@ -276,7 +276,7 @@ void openTestFile()
 	   				numArraySize = stoi(stringnum1, &sz);
 	   				numMax = stoi(stringnum2, &sz);
 	   		
-	    			cout << "The command for this line is BENCHMARK RANDOM " << numArraySize << " " << numMax << "\n";
+	    		//	cout << "The command for this line is BENCHMARK RANDOM " << numArraySize << " " << numMax << "\n";
 		    	//	cout << "NumArraySize = " << numArraySize << "\n";
 		    	//	cout << "NumMax = " << numMax << "\n";
 		    	//    cout << "stringnum1 size = " << stringnum1.length() << "\n";
@@ -294,7 +294,7 @@ void openTestFile()
 	   				numArraySize = stoi(stringnum1, &sz);
 	   				
 	   		
-	    			cout << "The command for this line is PRINT INPUT " << numArraySize << "\n";
+	    		//	cout << "The command for this line is PRINT INPUT " << numArraySize << "\n";
 		    	//	cout << "NumArraySize = " << numArraySize << "\n";
 		    	//	cout << "NumMax = " << numMax << "\n";
 		    	//    cout << "stringnum1 size = " << stringnum1.length() << "\n";

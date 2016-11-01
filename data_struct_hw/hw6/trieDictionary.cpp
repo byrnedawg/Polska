@@ -1,5 +1,5 @@
-
-// http://stackoverflow.com/questions/36389371/why-the-words-do-not-contain-in-my-dictionary-c-trie
+// Name: Gregory Byrne
+// Assignment: HW6 - trieDictionary
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,7 +12,7 @@ private:
 	class Node {
 	public:
 		Node* next[26];
-		bool isWord;  //216 bytes minimum!
+		bool isWord;  
 	
 		Node()
 		{ 
@@ -81,35 +81,11 @@ public:
 		
 	}
 	
-	/*
-	void traverse(string const& prefix, Node const& n) 
-	{
-    if (n.isWord)
-        cout<<prefix;
-
-    for (int i = 0; i < 26; ++i)
-        if (n.next[i])
-            traverse(prefix + ('a' + i), *n.next[i]);
-	}
-	*/
-	
-	friend bool hasChild(Node* parent)
-	{
-		for(int i = 0; i < 26; i++)
-		{
-			if(parent->next[i] != nullptr)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	friend void printNode(Node* root)
+	friend void printNode(Node* node)
 	{
 			for(int i = 0; i < 26; i++)
 			{
-				Node* parent = root->next[i];
+				Node* parent = node->next[i];
 				if(parent!= nullptr)
 				{	
 					cout << "[" << char(i+'a') << "]-> ";
@@ -149,7 +125,6 @@ public:
 	}
 	
 };
-
 void openTestFile()
 {
 	Trie theDictTrie;
@@ -169,7 +144,64 @@ void openTestFile()
     		theDictTrie.add(word);
     		wordCount++;
     	}
-    	cout << "Word Count is = " << wordCount << " \n";
+    	cout << "Dictionary Word Count is = " << wordCount << " \n";
+    	myfile.close();
+	}
+	else
+    {
+        cout << "Unable to open file";
+    }
+    
+    ifstream testfile ("hw6a.dat");
+    
+    if (testfile.is_open())
+	{
+    	while  (getline(testfile, line))
+    	{
+    		word = line.substr(0, line.find_first_of(" "));
+    		
+    		if(theDictTrie.isWord(word))
+    		{
+    			cout << "Search Word: " << word << "\t\tis in Dictionary?: YES\n";
+    		}
+    		else
+    		{
+    			cout << "Search Word: " << word << "\t\tis in Dictionary?: NO\n";
+    		}
+    		
+    	}
+    	testfile.close();
+	}
+	else
+    {
+        cout << "Unable to open file";
+    }
+    
+	
+
+	
+
+}
+void loadDictionary()
+{
+	Trie theDictTrie;
+	string inWord;
+	ifstream myfile ("dict.txt");
+	string::size_type sz;
+    string word;
+    string line;
+    int answer = 0;
+    int wordCount = 0;
+   
+    if (myfile.is_open())
+	{
+    	while  (getline(myfile, line))
+    	{
+    		word = line.substr(0, line.find_first_of(" "));
+    		theDictTrie.add(word);
+    		wordCount++;
+    	}
+    	cout << "Dictionary Word Count is = " << wordCount << " \n";
     	myfile.close();
 	}
 	else
@@ -180,9 +212,9 @@ void openTestFile()
 
 	do{
 		cout << "-----------------------------------------------------------\n";
-		cout << "What do you want to do to our Dictionary? \n";
+		cout << "Dictionary Options \n";
 		cout << "1: Search for a word \n";
-		cout << "2: Determine if a word starts with letters \n";
+		cout << "2: Determine if a word starts with string of letters \n";
 		cout << "3: Add Word to Dictionary \n";
 		cout << "4: Finished End Program \n";
 		cout << "-----------------------------------------------------------\n";
@@ -237,9 +269,9 @@ void firstTest()
 
 	do{
 		cout << "-----------------------------------------------------------\n";
-		cout << "What do you want to do to our Dictionary? \n";
+		cout << "Dictionary Options \n";
 		cout << "1: Search for a word \n";
-		cout << "2: Determine if a word starts with letters \n";
+		cout << "2: Determine if a word starts with string of letters \n";
 		cout << "3: Add Word to Dictionary \n";
 		cout << "4: Finished End Program \n";
 		cout << "-----------------------------------------------------------\n";
@@ -292,7 +324,10 @@ void firstTest()
 }
 int main() 
 {
+
 	openTestFile();
+	
+//	loadDictionary();
 //	firstTest();
 
   return 0;
