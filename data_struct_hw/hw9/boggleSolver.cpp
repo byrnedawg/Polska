@@ -41,10 +41,13 @@ public:
 	{
 		Node* node  = root;
 
-        for(int i = 0; i < line.size(); i++){
+        for(int i = 0; i < line.size(); i++)
+        {
             char x = line[i];
-            if(node->next[x-'a'] == nullptr)                    
+            if(node->next[x-'a'] == nullptr)  
+            {
                 node->next[x-'a'] = new Node();
+            }
             node = node->next[x-'a'];
         }
 
@@ -55,12 +58,17 @@ public:
 	{  
 		Node* node = root;
 
-        for(int i = 0; i < word.size(); i++){
+        for(int i = 0; i < word.size(); i++)
+        {
             char x = word[i];
             if(node->next[x-'a'] == nullptr)
+            {
                 return false;
+            }
             else
+            {
                 node = node->next[x-'a'];
+            }
         }
 
         return node->isWord;
@@ -72,12 +80,17 @@ public:
 	{  
 		Node* node = root;
 
-        for(int i = 0; i < prefix.size(); i++){
+        for(int i = 0; i < prefix.size(); i++)
+        {
             char x = prefix[i];
             if(node->next[x-'a'] == nullptr)
+            {
                 return false;
+            }
             else
+            {
                 node = node->next[x-'a'];
+            }
         }
         return true; 
 		
@@ -85,26 +98,24 @@ public:
 	
 	friend void printNode(Node* node)
 	{
-			for(int i = 0; i < 26; i++)
-			{
-				Node* parent = node->next[i];
-				if(parent!= nullptr)
-				{	
-					cout << "[" << char(i+'a') << "]-> ";
-					
-
-					for(int j = 0; j < 26; j++)
-					{
-						Node* child = parent->next[j];
-						if(child != nullptr)
-						{	
-							cout << "[" << char(j+'a') << "]-> ";
-							printNode(child);
-						}
-			
+		for(int i = 0; i < 26; i++)
+		{
+			Node* parent = node->next[i];
+			if(parent!= nullptr)
+			{	
+				cout << "[" << char(i+'a') << "]-> ";
+				for(int j = 0; j < 26; j++)
+				{
+					Node* child = parent->next[j];
+					if(child != nullptr)
+					{	
+						cout << "[" << char(j+'a') << "]-> ";
+						printNode(child);
 					}
+			
 				}
 			}
+		}
 	}
 		
 	
