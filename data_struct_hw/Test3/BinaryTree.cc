@@ -98,9 +98,9 @@ public:
 
 
 	friend ostream& operator <<(ostream& s, const BinaryTree& tree) {
-		//tree.root->inorder(s);
-		tree.root->postorder(s);
-		//tree.root->preorder(s);
+	//	tree.root->inorder(s);
+	//	tree.root->postorder(s);
+		tree.root->preorder(s);
     return s;
 	}
 };
