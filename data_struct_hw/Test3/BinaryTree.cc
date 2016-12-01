@@ -98,9 +98,12 @@ public:
 
 
 	friend ostream& operator <<(ostream& s, const BinaryTree& tree) {
-	//	tree.root->inorder(s);
-	//	tree.root->postorder(s);
+		cout << "inOrder: ";
+		tree.root->inorder(s);
+		cout << "\nPreOrder: ";
 		tree.root->preorder(s);
+		cout << "\nPostOrder: ";
+		tree.root->postorder(s);
     return s;
 	}
 };
@@ -111,14 +114,23 @@ int main(){
 //	for (int i = 1; i <= 6; i++)
 	//	b.add(i);
 	
-	b.add(5);
-	b.add(3);
-	b.add(10);
-	b.add(8);
-	b.add(12);
-	b.add(1);
 	b.add(7);
+	b.add(1);
+	b.add(0);
+	b.add(9);
+	b.add(8);
+	b.add(10);
+	b.add(3);
+	b.add(2);
+	b.add(5);
+	b.add(4);
+	b.add(6);
+	//b.add(4);
 
+  //b.add(8);
+//	b.add(5);
+//	b.add(9);
+//	b.add(8);
 	
 	cout << b;
 }
